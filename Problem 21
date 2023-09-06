@@ -1,0 +1,78 @@
+//This was my final try... memory limit was exceeded(:
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+ import java.util.ArrayList;
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        //ArrayList to hold all the sorted values.
+        ArrayList<Integer> sorted = new ArrayList<Integer>(); 
+        //The next stuff just sorts the values into an ArrayList, I think it works(:
+        while(list1 != null && list2 != null)
+        {
+            if(list1.val <= list2.val)
+            {
+                sorted.add(list1.val);
+                list1 = list1.next;
+            }
+            else
+            {
+                sorted.add(list2.val);
+                list2 = list2.next;
+            }
+        }
+
+        while(list1 != null)
+        {
+            sorted.add(list1.val);
+            list1 = list1.next;
+        }
+
+        while(list2 != null)
+        {
+            sorted.add(list2.val);
+            list1 = list2.next;
+        }
+
+        //Fun part - how to get the ArrayList values back into a ListNode, so it can be returned? The following is long and complicated, but I couldn't understand how the given solutions worked, so I did my best. I can see how it exceeded the allowed memory.
+
+        //First I made an arrayList of blank ListNodes. I probably could have just declared the size of listNodes to be sorted.size(), but just being excessively careful that they're declared. The memory limit is exceeded either way
+        ArrayList<ListNode> listNodes = new ArrayList<ListNode>();
+        ListNode temp_ln = new ListNode();
+        for(int i=0;i<sorted.size();i++)
+        {
+            temp_ln = new ListNode();
+            listNodes.add(temp_ln);
+        }
+
+        //Finally, I thought about how I would turn the ArrayList into a ListNode, and tried to turn that into a loop depending on the size of the arraylist.
+        int index = (sorted.size() - 1);
+        ListNode list3 = new ListNode(sorted.get(index));
+        
+        int i = 2;
+        int a = 1;
+        int onlythefirst = 1;
+        temp_ln = new ListNode();
+        while(index-i >= 0)
+        {
+            if(onlythefirst == 1)
+            {
+                temp_ln = new ListNode(sorted.get(index-1), list3);
+                listNodes.set((a-1), temp_ln);
+                onlythefirst = 0;
+            }
+            temp_ln = new ListNode(sorted.get(index-i), listNodes.get(a-1));
+            listNodes.set(a, temp_ln);
+            i++;
+            a++;
+        }
+        return listNodes.get(a);
+    }
+}
