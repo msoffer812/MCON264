@@ -1,31 +1,34 @@
+import java.util.ArrayList;
 class Solution {
     public int pivotIndex(int[] nums) {
-        int countLeft = 0;
-        int countRight = 0;
-        int i = 0;
-        int solution= -1;
-        while(i < nums.length)
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        int leftSum=0;
+        int rightSum=0;
+        int b,a;
+        for(int i=0; i<nums.length; i++)
         {
-            for(int a=0; a<i; a++)
+            numbers.add(nums[i]);
+        }
+        for(int i=0;i<numbers.size();i++)
+        {
+            for(a=0; a<i; a++)
             {
-                countLeft += nums[a];
+                leftSum += numbers.get(a);
             }
-            for(int b=(i + 1); b<nums.length; b++)
+            for(b=(i+1); b<numbers.size(); b++)
             {
-                countRight += nums[b];
+                rightSum += numbers.get(b);
             }
-            if(countLeft == countRight)
+            if(rightSum == leftSum)
             {
-                solution = i;
-                i = nums.length;
+               return i;
             }
             else
             {
-                i++;
-                countLeft = 0;
-                countRight = 0;
+                leftSum=0;
+                rightSum=0;
             }
         }
-        return solution;
+        return -1;
     }
 }
