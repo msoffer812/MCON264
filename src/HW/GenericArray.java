@@ -19,6 +19,12 @@ public class GenericArray <T> {
 		}
 		length = g.size();
 	}
+	//no-arg constructor
+	public GenericArray()
+	{
+		array = (T[]) new Object[5];
+		this.length = 5;
+	}
 	//getter
 	public T get(int index)
 	{
