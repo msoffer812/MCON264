@@ -40,10 +40,21 @@ public class week3 {
 				{
 					stringArray.set(i, s2[i]);
 				}
+				System.out.println("Modified array of Strings:");
+				displayArray(stringArray, "strings");
 				//Check the size
 				System.out.println("The size of the array is " + stringArray.size());
 				//Check if the array is empty
 				checkIfEmpty(stringArray);
+				//displaying how the array can dynamically resize if told to add something and it's full
+				for(i = 0;i<10;i++)
+				{
+					stringArray.add("e");
+				}
+				System.out.println("The size of the array is now " + stringArray.size());
+				System.out.println("This is the new array:");
+				displayArray(stringArray,"strings");
+				System.exit(0);
 	}
 	//print array
 	public static void displayArray(GenericArray g, String dataType)
