@@ -4,7 +4,7 @@ I'm not sure what I should be writing - so I will just describe the different me
 The GenericArray is a data structure that can hold any datatype
 
 Constructors
-  GenericArray() - no-arg constructor, initializes with a capacity of 5;
+  GenericArray() - no-arg constructor, initializes with a capacity of 5;\n
   GenericArray(int) - initializes a GenericArray with a specified size(otherwise it can contain 5 elements) 
   GenericArray(GenericArray) - copy constructor - copies a different array
 Methods
